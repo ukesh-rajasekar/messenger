@@ -17,7 +17,6 @@ const Requests: FC<RequestsProps> = async ({ }) => {
 
   //ids of people who sent us friend requests
   const incomingRequestIds = await fetchRedis('smembers', `user:${session.user.id}:incoming_friend_requests`) as string[]
-  console.log(incomingRequestIds, 'requests here')
 
   const incomingRequestDetails = await Promise.all(
     incomingRequestIds.map(async (id)=> {
@@ -30,7 +29,6 @@ const Requests: FC<RequestsProps> = async ({ }) => {
     })
   )
 
-  console.log(incomingRequestDetails, 'here')
   return (<main className='pt-8 ml-2'>
   <h1 className='font-bold text-5xl mb-8'>Friend requests</h1>
   <div className='flex flex-col gap-4'>
