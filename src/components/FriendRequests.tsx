@@ -1,8 +1,10 @@
 'use client'
+import { pusherClient } from '@/lib/pusher'
+import { toKeyPusher } from '@/lib/utils'
 import axios from 'axios'
 import { Check, UserPlus, X } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 
 interface FriendRequestsProps {
@@ -14,19 +16,37 @@ const FriendRequests: FC<FriendRequestsProps> = ({ incomingRequests, sessionId }
     const router = useRouter()
     const [requests, setRequests] = useState<Requests[] | []>(incomingRequests)
 
-    const acceptRequests = async(senderId: string) => {
+    const acceptRequests = async (senderId: string) => {
         console.log('request accepting ...')
-        await axios.post('/api/friends/accept', {id: senderId})
-        setRequests((prev)=> prev.filter((req) => req.senderId !== senderId))
+        await axios.post('/api/friends/accept', { id: senderId })
+        setRequests((prev) => prev.filter((req) => req.senderId !== senderId))
         router.refresh()
     }
 
-    const denyRequests = async(senderId: string) => {
+    const denyRequests = async (senderId: string) => {
         console.log('request denying ...')
-        await axios.post('/api/friends/deny', {id: senderId})
-        setRequests((prev)=> prev.filter((req) => req.senderId !== senderId))
+        await axios.post('/api/friends/deny', { id: senderId })
+        setRequests((prev) => prev.filter((req) => req.senderId !== senderId))
         router.refresh()
     }
+
+    useEffect(() => {
+        //subscribing for real time feature
+        pusherClient.subscribe(toKeyPusher(`user:${sessionId}:incoming_friend_requests`))
+
+        const handleIncomingRequests = ({ senderId, senderEmail }: Requests) => {
+            console.log('incoming_friend_requests pusher triggered...')
+            setRequests((prev) => [...prev, { senderEmail, senderId }])
+        }
+        pusherClient.bind('incoming_friend_requests', handleIncomingRequests)
+        return (() => {
+            pusherClient.unsubscribe(toKeyPusher(`user:${sessionId}:incoming_friend_requests`))
+            pusherClient.unbind('incoming_friend_requests', handleIncomingRequests)
+
+        })
+    }, [])
+
+
     return (<>
         {requests.length === 0 ? (<p>No requests found</p>) : (requests.map((request) => {
             return (

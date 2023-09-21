@@ -1,5 +1,3 @@
-'use client'
-
 import AddFriendButton from '@/components/AddFriendButton'
 import { FC } from 'react'
 
