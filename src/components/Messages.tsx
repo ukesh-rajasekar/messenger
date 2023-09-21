@@ -1,22 +1,38 @@
 'use client'
-import { cn, formatTimestamp } from '@/lib/utils';
+import { pusherClient } from '@/lib/pusher';
+import { cn, formatTimestamp, toKeyPusher } from '@/lib/utils';
 import { Message } from '@/lib/validators/message';
 import Image from 'next/image';
-import { FC, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 
 interface MessagesProps {
     initialMessages: Message[];
     user: User;
     chatPartner: User;
-
+    chatId: string;
 }
 
-const Messages: FC<MessagesProps> = ({ initialMessages, user, chatPartner }) => {
+const Messages: FC<MessagesProps> = ({ initialMessages, user, chatPartner, chatId }) => {
 
     const [messages, setMessages] = useState<Message[]>(initialMessages)
     const scrollDownRef = useRef<HTMLDivElement | null>(null)
     console.log(messages, 'messages')
     const { id: sessionId, image: sessionImg } = user
+
+    useEffect(() => {
+        //subscribing for real time feature
+        pusherClient.subscribe(toKeyPusher(`chat:${chatId}`))
+
+        const handleIncomingMessage = (message: Message) => {
+            console.log('incoming_message pusher triggered...')
+            setMessages((prev) => [...prev, message])
+        }
+        pusherClient.bind('incoming_message', handleIncomingMessage)
+        return (() => {
+            pusherClient.unsubscribe(toKeyPusher(`chat:${chatId}`))
+            pusherClient.unbind('incoming_message', handleIncomingMessage)
+        })
+    }, [])
     return <div id='messages' className='flex h-full flex-1 flex-col-reverse gap-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch '>
         <div ref={scrollDownRef}>
             {messages.map((message, index) => {
@@ -75,7 +91,8 @@ const Messages: FC<MessagesProps> = ({ initialMessages, user, chatPartner }) => 
                     </div>
                 )
             })}
-        </div></div>
+        </div>
+    </div>
 }
 
 export default Messages

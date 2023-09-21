@@ -79,7 +79,7 @@ const Chat: FC<ChatProps> = async ({ params }) => {
                 </div>
             </div>
         </div>
-        <Messages chatPartner={chatPartner} initialMessages={messages} user={user} />
+        <Messages chatPartner={chatPartner} initialMessages={messages} user={user} chatId={chatId} />
         <ChatInput chatPartner={chatPartner} chatId={chatId} />
     </div>
 }
