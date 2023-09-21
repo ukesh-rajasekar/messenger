@@ -1,3 +1,5 @@
+import ChatInput from '@/components/ChatInput'
+import Messages from '@/components/Messages'
 import { fetchRedis } from '@/helpers/redis'
 import { authOptions } from '@/lib/auth'
 import { messageArrayValidator } from '@/lib/validators/message'
@@ -17,7 +19,8 @@ async function getMessages(chatId: string) {
     try {
 
 
-        const response = await fetchRedis('zrange', `chat:${chatId}:messages`, 0, 1) as string[]
+        const response = await fetchRedis('zrange', `chat:${chatId}:messages`, 0, -1) as string[]
+        console.log(response, 'resp')
         const dbMessages = response.map((message) => JSON.parse(message) as Message)
         const reversedMessages = dbMessages.reverse()
         const messages = messageArrayValidator.parse(reversedMessages)
@@ -37,6 +40,7 @@ const Chat: FC<ChatProps> = async ({ params }) => {
 
     const { user } = session
 
+    console.log(user, 'user here')
     const [userId1, userId2] = chatId.split('--')
 
     //check if the message came from the current user
@@ -50,10 +54,10 @@ const Chat: FC<ChatProps> = async ({ params }) => {
     const response = (await fetchRedis('get', `user:${partnerId}`)) as string
     const chatPartner = await JSON.parse(response) as User
 
-    const messages = getMessages(chatId)
+    const messages = await getMessages(chatId)
 
 
-    console.log(messages);
+    console.log(messages, 'messages');
 
     return <div className='flex flex-col flex-1 justify-between h-full max-h-[calc(100vh-6rem)]'>
         <div className='flex sm:items-center justify-between py-3 border-b-2 border-gray-200'>
@@ -75,6 +79,8 @@ const Chat: FC<ChatProps> = async ({ params }) => {
                 </div>
             </div>
         </div>
+        <Messages chatPartner={chatPartner} initialMessages={messages} user={user} />
+        <ChatInput chatPartner={chatPartner} chatId={chatId} />
     </div>
 }
 
