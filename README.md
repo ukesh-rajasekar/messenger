@@ -14,13 +14,14 @@ A chat application built using [Next.js](https://nextjs.org/) and upstash - redi
 
 - [x] ~Build basic layout~
 - [x] ~Build common UI~
-- [x] Add authentication
-- [x] Integrate Toasters
-- [x] Add Friend - requests
-- [x] Accept / Deny requests
-- [x] Message Layout
-- [x] chat features
-- [x] Pusher Integration and Real time updates
+- [x] ~Add authentication~
+- [x] ~Integrate Toasters~
+- [x] ~Add Friend - requests~
+- [x] ~Accept / Deny requests~
+- [x] ~Message Layout~
+- [x] ~chat features~
+- [x] ~Pusher Integration and Real time updates~
+- [x] ~Group chats by date~
 - [x] Push Notifications
 - Delete chat, Pin Chat, reply Chat ...
 - Dark mode
