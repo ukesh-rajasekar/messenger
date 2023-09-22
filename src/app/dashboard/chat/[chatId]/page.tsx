@@ -20,10 +20,8 @@ async function getMessages(chatId: string) {
 
 
         const response = await fetchRedis('zrange', `chat:${chatId}:messages`, 0, -1) as string[]
-        console.log(response, 'resp')
         const dbMessages = response.map((message) => JSON.parse(message) as Message)
-        const reversedMessages = dbMessages.reverse()
-        const messages = messageArrayValidator.parse(reversedMessages)
+        const messages = messageArrayValidator.parse(dbMessages)
         return messages
     }
     catch (error) {

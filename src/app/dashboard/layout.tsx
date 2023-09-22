@@ -39,7 +39,7 @@ const Layout: FC<LayoutProps> = async ({ children }: LayoutProps) => {
             <div className='text-xs font-semibold leading-6 text-gray-400'>Your chats</div>
             <nav className='flex flex-1 flex-col'>
                 <ul role='list' className='flex flex-1 flex-col gap-y-7'>
-                    <SideBarChatList friends={friendsData} userId = {session.user.id}/>
+                    <SideBarChatList friends={friendsData} sessionId={session.user.id} />
                     <li><div className='text-xs font-semibold leading-6 text-gray-400'>Overview</div>
                         <ul role='list' className='-mx-2 mt-2 space-y-1'>
                             {sidebarOptions.map((option) => {
@@ -61,38 +61,38 @@ const Layout: FC<LayoutProps> = async ({ children }: LayoutProps) => {
 
                             <li>
                                 <FriendRequestSideBarOption
-                    sessionId={session.user.id}
-                    initialUnseenRequestCount={unseenRequestsCount}
-                  />
+                                    sessionId={session.user.id}
+                                    initialUnseenRequestCount={unseenRequestsCount}
+                                />
                             </li>
                         </ul>
                     </li>
                     <li className='-mx-6 mt-auto flex items-center'>
-              <div className='flex flex-1 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900'>
-                <div className='relative h-8 w-8 bg-gray-50'>
-                  <Image
-                    fill
-                    referrerPolicy='no-referrer'
-                    className='rounded-full'
-                    src={session.user.image || ''}
-                    alt='Your profile picture'
-                  />
-                </div>
+                        <div className='flex flex-1 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900'>
+                            <div className='relative h-8 w-8 bg-gray-50'>
+                                <Image
+                                    fill
+                                    referrerPolicy='no-referrer'
+                                    className='rounded-full'
+                                    src={session.user.image || ''}
+                                    alt='Your profile picture'
+                                />
+                            </div>
 
-                <span className='sr-only'>Your profile</span>
-                <div className='flex flex-col'>
-                  <span aria-hidden='true'>{session.user.name}</span>
-                  <span className='text-xs text-zinc-400' aria-hidden='true'>
-                    {session.user.email}
-                  </span>
-                </div>
-              </div>
+                            <span className='sr-only'>Your profile</span>
+                            <div className='flex flex-col'>
+                                <span aria-hidden='true'>{session.user.name}</span>
+                                <span className='text-xs text-zinc-400' aria-hidden='true'>
+                                    {session.user.email}
+                                </span>
+                            </div>
+                        </div>
 
-              <SignOutButton className='h-full aspect-square' />
-            </li>
+                        <SignOutButton className='h-full aspect-square' />
+                    </li>
                 </ul>
             </nav>
-        </div>{children}</div>)
+        </div><aside className='max-h-screen container py-8 md:py-10 w-full'>{children}</aside></div>)
 }
 
 export default Layout

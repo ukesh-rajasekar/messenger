@@ -59,6 +59,13 @@ export async function POST(req: Request) {
       message
     );
 
+    //extending message to include image and name of the sender, to show this on the toaser notification
+    pusherServer.trigger(toKeyPusher(`user:${friendId}:chats`), "new_message", {
+      ...message,
+      senderImage: session.user.image,
+      senderName: session.user.name,
+    });
+
     await db.zadd(`chat:${chatId}:messages`, {
       score: timestamp,
       member: JSON.stringify(message),
