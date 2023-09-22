@@ -22,6 +22,7 @@ A chat application built using [Next.js](https://nextjs.org/) and upstash - redi
 - [x] ~chat features~
 - [x] ~Pusher Integration and Real time updates~
 - [x] ~Group chats by date~
+- [x] State Managements
 - [x] Push Notifications
 - Delete chat, Pin Chat, reply Chat ...
 - Dark mode
