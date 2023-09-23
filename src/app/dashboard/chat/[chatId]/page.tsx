@@ -7,6 +7,7 @@ import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { FC } from 'react'
+import Skeleton from 'react-loading-skeleton'
 
 interface ChatProps {
     params: {
@@ -56,6 +57,7 @@ const Chat: FC<ChatProps> = async ({ params }) => {
 
 
     console.log(messages, 'messages');
+
 
     return <div className='flex flex-col flex-1 justify-between h-full max-h-[calc(100vh-6rem)]'>
         <div className='flex sm:items-center justify-between py-3 border-b-2 border-gray-200'>

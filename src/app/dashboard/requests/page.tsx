@@ -19,7 +19,7 @@ const Requests: FC<RequestsProps> = async ({ }) => {
   const incomingRequestIds = await fetchRedis('smembers', `user:${session.user.id}:incoming_friend_requests`) as string[]
 
   const incomingRequestDetails = await Promise.all(
-    incomingRequestIds.map(async (id)=> {
+    incomingRequestIds.map(async (id) => {
       const sender = (await fetchRedis('get', `user:${id}`)) as string
       const result = JSON.parse(sender) as User
       return {
@@ -30,11 +30,11 @@ const Requests: FC<RequestsProps> = async ({ }) => {
   )
 
   return (<main className='pt-8 ml-2'>
-  <h1 className='font-bold text-5xl mb-8'>Friend requests</h1>
-  <div className='flex flex-col gap-4'>
-    <FriendRequests incomingRequests={incomingRequestDetails} sessionId={session.user.id}/>
-  </div>
-</main>)
+    <h1 className='font-bold text-5xl mb-8'>Friend requests</h1>
+    <div className='flex flex-col gap-4'>
+      <FriendRequests incomingRequests={incomingRequestDetails} sessionId={session.user.id} />
+    </div>
+  </main>)
 }
 
 export default Requests
