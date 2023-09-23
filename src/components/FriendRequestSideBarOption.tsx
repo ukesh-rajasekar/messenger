@@ -30,7 +30,7 @@ const FriendRequestSideBarOption: FC<FriendRequestSideBarOptionProps> = ({ initi
       pusherClient.unbind('incoming_friend_requests', handleIncomingRequests)
 
     })
-  }, [])
+  },)
 
   return <Link
     href='/dashboard/requests'

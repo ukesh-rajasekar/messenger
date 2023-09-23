@@ -44,7 +44,7 @@ const FriendRequests: FC<FriendRequestsProps> = ({ incomingRequests, sessionId }
             pusherClient.unbind('incoming_friend_requests', handleIncomingRequests)
 
         })
-    }, [])
+    },)
 
 
     return (<>
