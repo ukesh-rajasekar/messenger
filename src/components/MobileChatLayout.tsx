@@ -28,12 +28,31 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({
    unseenRequestCount,
 }) => {
    const [open, setOpen] = useState<boolean>(false);
+   const [currentTab, setcurrentTab] = useState<string>('');
+
+   const tabList = [
+      {
+         dashboard: 'Dashboard',
+      },
+      { add: 'Add friends' },
+      { chat: 'Messages' },
+      { requests: 'Friend requests' },
+   ];
 
    const pathname = usePathname();
 
    useEffect(() => {
       setOpen(false);
    }, [pathname]);
+
+   useEffect(() => {
+      tabList.map((tab) => {
+         const [key] = Object.entries(tab);
+         if (pathname?.includes(key[0])) {
+            setcurrentTab(key[1]);
+         }
+      });
+   });
 
    return (
       <div className='fixed bg-zinc-50 border-b border-zinc-200 top-0 inset-x-0 py-2 px-4'>
@@ -74,7 +93,7 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({
                                  <div className='px-4 sm:px-6'>
                                     <div className='flex items-start justify-between'>
                                        <Dialog.Title className='text-base font-semibold leading-6 text-gray-900'>
-                                          Dashboard
+                                          {currentTab}
                                        </Dialog.Title>
                                        <div className='ml-3 flex h-7 items-center'>
                                           <button
