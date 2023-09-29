@@ -32,15 +32,12 @@ const page = async ({}) => {
             -1
          );
          lastMessage = JSON.parse(lastMessage) as Message[];
-         console.log('last', lastMessage);
          return {
             ...friend,
             lastMessage,
          };
       })
    );
-
-   console.log(friendsWithLastMessage, '%%%');
 
    return (
       <div className='container py-12'>

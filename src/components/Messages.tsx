@@ -20,7 +20,6 @@ const Messages: FC<MessagesProps> = ({
 }) => {
    const [messages, setMessages] = useState<Message[]>(initialMessages);
    const scrollDownRef = useRef<HTMLDivElement | null>(null);
-   console.log(messages, 'messages');
    const { id: sessionId, image: sessionImg } = user;
    let date =
       initialMessages.length > 0
@@ -51,7 +50,6 @@ const Messages: FC<MessagesProps> = ({
                //grouping msgs by date
                let isGroupDate = false;
                const currDate = new Date(message.timestamp).toDateString();
-               console.log(date, currDate, 'date here');
                if (currDate !== date) {
                   isGroupDate = true;
                   date = currDate;
@@ -66,7 +64,7 @@ const Messages: FC<MessagesProps> = ({
                      {index === 0 || isGroupDate ? (
                         <div className='full-width py-4 flex'>
                            <div className='border-b-2 flex-1 h-6' />
-                           <div className='flex-2 rounded-full border border-gray-400 hover:text-black-600 font-normal hover:font-semibold p-2 '>{`${
+                           <div className='flex-2 rounded-full border border-gray-400 text-black hover:text-black-600 font-normal hover:font-semibold p-2 '>{`${
                               date === today ? 'Today' : date
                            }`}</div>
                            <div className='border-b-2 flex-1 h-6' />
