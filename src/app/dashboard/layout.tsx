@@ -12,6 +12,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
+import ThoodhanIcon from '@/assets/thoodhan';
 
 const sidebarOptions: SidebarOption[] = [
    {
@@ -52,7 +53,7 @@ const Layout = async ({ children }: LayoutProps) => {
             <Link
                href='/dashboard'
                className='h-16 flex shrink-0 items-center'>
-               <Icons.Logo className='h-8 w-auto text-indigo-600' />
+               <ThoodhanIcon className='h-8 w-auto text-indigo-600' />
             </Link>
             <div className='text-xs font-semibold leading-6 text-gray-400'>
                Your chats

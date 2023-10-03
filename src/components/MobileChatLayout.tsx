@@ -13,6 +13,7 @@ import { SidebarOption } from '@/interfaces/typings';
 import { Icons } from '@/assets/icons';
 import SideBarChatList from './SideBarChatList';
 import FriendRequestSideBarOption from './FriendRequestSideBarOption';
+import ThoodhanIcon from '@/assets/thoodhan';
 
 interface MobileChatLayoutProps {
    friends: User[];
@@ -60,7 +61,7 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({
             <Link
                href='/dashboard'
                className={buttonVariants({ variant: 'ghost' })}>
-               <Icons.Logo className='h-6 w-auto text-indigo-600' />
+               <ThoodhanIcon className='h-6 w-auto text-indigo-600' />
             </Link>
             <Button
                onClick={() => setOpen(true)}
