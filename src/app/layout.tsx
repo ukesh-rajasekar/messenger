@@ -1,23 +1,25 @@
-import Toasters from '@/components/toasters'
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import Toasters from '@/components/Toasters';
+import './globals.css';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'thoodhan',
-  description: 'the messenger',
-}
+   title: 'thoodhan | Home',
+   description: 'the messenger',
+};
 
 export default function RootLayout({
-  children,
+   children,
 }: {
-  children: React.ReactNode
+   children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body className={inter.className}><Toasters>{children}</Toasters></body>
-    </html>
-  )
+   return (
+      <html lang='en'>
+         <body className={inter.className}>
+            <Toasters>{children}</Toasters>
+         </body>
+      </html>
+   );
 }

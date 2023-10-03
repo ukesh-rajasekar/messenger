@@ -1,17 +1,17 @@
 import { Icons } from '@/assets/icons';
+import FriendRequestSideBarOption from '@/components/FriendRequestSideBarOption';
+import MobileChatLayout from '@/components/MobileChatLayout';
+import SideBarChatList from '@/components/SideBarChatList';
+import SignOutButton from '@/components/SignOutButton';
+import { getFriendsData } from '@/helpers/fetchFriends';
+import { fetchRedis } from '@/helpers/redis';
 import { SidebarOption } from '@/interfaces/typings';
 import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { FC, ReactNode } from 'react';
-import Image from 'next/image';
-import SignOutButton from '@/components/SignOutButton';
-import FriendRequestSideBarOption from '@/components/FriendRequestSideBarOption';
-import { fetchRedis } from '@/helpers/redis';
-import { getFriendsData } from '@/helpers/fetchFriends';
-import SideBarChatList from '@/components/SideBarChatList';
-import MobileChatLayout from '@/components/MobileChatLayout';
+import { ReactNode } from 'react';
 
 const sidebarOptions: SidebarOption[] = [
    {

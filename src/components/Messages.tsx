@@ -7,20 +7,21 @@ import { FC, useEffect, useRef, useState } from 'react';
 
 interface MessagesProps {
    initialMessages: Message[];
-   user: User;
    chatPartner: User;
    chatId: string;
+   sessionId: string;
+   sessionImg: string | null | undefined;
 }
 
 const Messages: FC<MessagesProps> = ({
    initialMessages,
-   user,
    chatPartner,
    chatId,
+   sessionId,
+   sessionImg,
 }) => {
    const [messages, setMessages] = useState<Message[]>(initialMessages);
    const scrollDownRef = useRef<HTMLDivElement | null>(null);
-   const { id: sessionId, image: sessionImg } = user;
    let date =
       initialMessages.length > 0
          ? new Date(initialMessages[0].timestamp).toDateString()
@@ -112,7 +113,9 @@ const Messages: FC<MessagesProps> = ({
                            <Image
                               fill
                               src={
-                                 isCurrentUser ? sessionImg : chatPartner.image
+                                 isCurrentUser
+                                    ? (sessionImg as string)
+                                    : chatPartner.image
                               }
                               alt='Profile picture'
                               referrerPolicy='no-referrer'

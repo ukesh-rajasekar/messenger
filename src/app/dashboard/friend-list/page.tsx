@@ -17,7 +17,7 @@ const FriendList: FC<FriendListProps> = async ({}) => {
 
    //fetch and display friends
    const friendsData = await Promise.all(
-      friendIds.map(async (id) => {
+      friendIds.map(async (id: string) => {
          const response = (await fetchRedis('get', `user:${id}`)) as string;
          const result = (await JSON.parse(response)) as User;
          return {
