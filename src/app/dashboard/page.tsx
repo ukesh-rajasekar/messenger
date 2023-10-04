@@ -15,11 +15,6 @@ const page = async ({}) => {
       notFound();
    }
 
-   const friendIds = await fetchRedis(
-      'smembers',
-      `user:${session.user.id}:friends`
-   );
-
    //fetch and display friends
    const friendsData = await getFriendsData(session.user.id);
 
