@@ -1,6 +1,5 @@
 import AddFriendButton from '@/components/AddFriendButton';
 import { FC } from 'react';
-import Skeleton from 'react-loading-skeleton';
 
 interface AddProps {}
 
