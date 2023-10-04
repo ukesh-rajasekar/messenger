@@ -13,7 +13,8 @@ export default function Login() {
    async function logInWithGoogle() {
       setIsLoading(true);
       try {
-         await signIn('google');
+         const res = await signIn('google');
+         console.log(res, 'sign in result');
       } catch (e) {
          toast.error('something went wrong, try again later!');
       } finally {
