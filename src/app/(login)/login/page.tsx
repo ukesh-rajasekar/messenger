@@ -27,6 +27,19 @@ export default function Login() {
             <div className='w-full flex flex-col items-center maz-w-md space-y-8'>
                <div className='flex flex-col items-center gap-8'>
                   <ThoodhanIcon className='h-8 w-auto text-indigo-600' />
+                  <div className='container text-center flex-grow'>
+                     <h1 className='text-6xl font-bold text-indigo-600'>
+                        Thoodhan
+                     </h1>
+                     <p className='text-gray-800 mb-5 text-right'>
+                        -the messenger
+                     </p>
+
+                     <p className='text-black text-xl font-semibold mb-5'>
+                        A simple real-time chat app built using Next.js 13,
+                        Typescript and Redis.
+                     </p>
+                  </div>
                   <h2 className='mt-6 text-center text-3xl font-bold tracking-tight text-gray-900'>
                      Sign in to your account
                   </h2>

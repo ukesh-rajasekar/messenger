@@ -71,12 +71,12 @@ export async function POST(req: Request) {
       // notify added user
 
       await Promise.all([
-         pusherServer.trigger(
+         await pusherServer.trigger(
             toKeyPusher(`user:${idToAdd}:friends`),
             'new_friend',
             user
          ),
-         pusherServer.trigger(
+         await pusherServer.trigger(
             toKeyPusher(`user:${session.user.id}:friends`),
             'new_friend',
             friend
