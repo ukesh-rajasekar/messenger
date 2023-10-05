@@ -65,7 +65,7 @@ const FriendRequests: FC<FriendRequestsProps> = ({
                      key={request.senderId}
                      className='flex gap-4 items-center'>
                      <UserPlus className='text-black' />
-                     <p className='font-medium text-lg'>
+                     <p className='font-medium text-lg text-black'>
                         {request.senderEmail}
                      </p>
                      <button

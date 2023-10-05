@@ -77,7 +77,7 @@ const Messages: FC<MessagesProps> = ({
                         })}>
                         <div
                            className={cn(
-                              'flex flex-col space-y-2 text-base max-w-xs mx-2',
+                              'flex flex-col space-y-2 text-base max-w-xs mx-2 mb-1',
                               {
                                  'order-1 items-end': isCurrentUser,
                                  'order-2 items-start': !isCurrentUser,
