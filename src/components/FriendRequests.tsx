@@ -22,14 +22,12 @@ const FriendRequests: FC<FriendRequestsProps> = ({
       console.log('request accepting ...');
       await axios.post('/api/friends/accept', { id: senderId });
       setRequests((prev) => prev.filter((req) => req.senderId !== senderId));
-      router.refresh();
    };
 
    const denyRequests = async (senderId: string) => {
       console.log('request denying ...');
       await axios.post('/api/friends/deny', { id: senderId });
       setRequests((prev) => prev.filter((req) => req.senderId !== senderId));
-      router.refresh();
    };
 
    useEffect(() => {
