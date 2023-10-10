@@ -1,6 +1,8 @@
-# thoodhan - the messenger
+# thoodhan - the messenger 
 
-A chat application built using [Next.js](https://nextjs.org/) and upstash - redis db integrated with Pusher for real time updates and Oauth.
+https://thoodhan.vercel.app/login
+
+A chat application built using [Next.js](https://nextjs.org/) and upstash - redis db integrated with Pusher for real-time updates and Oauth.
 
 > **Warning**
 > --- no warnings so far ---
@@ -20,7 +22,7 @@ A chat application built using [Next.js](https://nextjs.org/) and upstash - redi
 -  [x] ~Accept / Deny requests~
 -  [x] ~Message Layout~
 -  [x] ~chat features~
--  [x] ~Pusher Integration and Real time updates~
+-  [x] ~Pusher Integration and Real-time updates~
 -  [x] ~Group chats, by date~
 -  [x] ~State Managements~
 -  [x] Push Notifications
